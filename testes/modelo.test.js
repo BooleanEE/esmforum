@@ -38,5 +38,15 @@ test('Testando cadastro de três respostas', () => {
   expect(modelo.get_respostas(5)[0]["texto"]).toBe('Lloyd Bannings');
   expect(modelo.get_respostas(6)[0]["texto"]).toBe('Ren Schwarz');
   expect(perguntas[0].num_respostas).toBe(3);
-  //expect(perguntas[1].id_pergunta).toBe(perguntas[2].id_pergunta-1);
+});
+
+test('Testando coerência do identificador de pergunta', () => {
+  modelo.cadastrar_pergunta('Which is the best track in Trails Series in your opinion?');
+  modelo.cadastrar_pergunta('Which is the best character in Trails Series in your opinion?');
+  modelo.cadastrar_pergunta('Which is the best villain in Trails Series in your opinion?');
+  expect(modelo.get_pergunta(7)["id_pergunta"]).toBe(7);
+  expect(modelo.get_pergunta(7)["id_usuario"]).toBe(1);
+  expect(modelo.get_pergunta(7)["texto"]).toBe('Which is the best track in Trails Series in your opinion?');
+  expect(modelo.get_pergunta(8)["texto"]).toBe('Which is the best character in Trails Series in your opinion?');
+  expect(modelo.get_pergunta(9)["texto"]).toBe('Which is the best villain in Trails Series in your opinion?');
 });
